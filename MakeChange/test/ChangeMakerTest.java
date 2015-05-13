@@ -1,7 +1,8 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -28,8 +29,8 @@ public class ChangeMakerTest {
 		expected.add(25);
 		expected.add(25);
 		expected.add(1);
-		
-		List<Integer> actual = ChangeMaker.makeChange(coins, amount);
+		TreeMap<Integer, List<Integer>> solutionSet = new TreeMap<>();
+		List<Integer> actual = ChangeMaker.makeChange(coins, amount, solutionSet);
 
 		assertEquals(expected, actual);		
 	}
@@ -48,9 +49,19 @@ public class ChangeMakerTest {
 		expected.add(7);
 		expected.add(7);
 		
-		List<Integer> actual = ChangeMaker.makeChange(coins, amount);
-				
+		System.out.println("Making change for: " + amount + " cents, using the following coins:" + coins);
+		
+		TreeMap<Integer, List<Integer>> solutionSet = new TreeMap<>();
+		List<Integer> actual = ChangeMaker.makeChange(coins, amount, solutionSet);
+		
+		
+		System.out.println("Solution set: " + solutionSet);
+
+		System.out.println("Actual: " + actual);
+		System.out.println("Expected: " + expected);
+		
 		assertEquals(expected, actual);
+		
 	}
 
 }
